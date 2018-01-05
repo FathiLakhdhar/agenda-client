@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Agendas</title>
+  <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../public/css/ionicons.min.css">
+  <style media="screen">
+    #listagenada>.dropdown{
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>List agendas</h1>
+
+    <a href="./add-agenda.html" class="btn btn-primary">Create new agenda</a>
+
+    <div id="listagenada"></div>
+  </div>
+
+  <script src="../public/js/jquery-2.1.1.min.js"></script>
+  <script src="../public/js/bootstrap.min.js"></script>
+  <script src='../public/js/app.js'></script>
+  <script type="text/javascript">
+    var token = localStorage.getItem('agendaToken') ? localStorage.getItem('agendaToken') : '';
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": `${app.config.api}api/agendas`,
+      "method": "GET",
+      "headers": {
+        "authorization": "Bearer " + token,
+      }
+    }
+
+    $.ajax(settings).done(function(data) {
+      console.log(data);
+      [].forEach.call(data, function(elm, index) {
+        var dropdown = `
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            ${elm.name}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#${elm._id}">edit</a></li>
+            <li><a href="#${elm._id}">delete</a></li>
+          </ul>
+        </div>
+        `;
+        $('#listagenada').append(dropdown)
+      })
+    });
+  </script>
+</body>
+
+</html>

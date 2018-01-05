@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login Calendly</title>
+
+  <link rel="stylesheet" href="../public/css/style2.css">
+  <link rel='stylesheet prefetch' href='../publiccss/style3.css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+  <link rel='stylesheet prefetch' href="../public/css/style4.css">
+  <link rel="stylesheet" href="../public/css/style.css">
+</head>
+
+<body>
+
+  <div class="pen-title">
+    <h1>Login Form</h1>
+  </div>
+  <div class="module form-module">
+    <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+
+    </div>
+    <div class="form">
+      <h2>Login Calendly</h2>
+      <form name="formlogin">
+        <input type="email" name="email" placeholder="Email Address" />
+        <input type="password" name="password" placeholder="Password" />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+    <div class="form">
+      <h2>Create an account</h2>
+      <form name="formsignup">
+        <input type="text" name="firstname" placeholder="FirstName" required/>
+        <input type="text" name="surname" placeholder="Surname" required/>
+        <input type="email" name="email" placeholder="Email Address" required/>
+        <input type="password" name="password" placeholder="Password" required/>
+        <input type="password" name="confirmPassword" placeholder="Confirm Password" required/>
+        <input type="Number" name="age" placeholder="Age" required/>
+        <select name="gender" required>
+        <option value="" disabled selected hidden>Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+  <script src='../public/js/jquery-2.1.1.min.js'></script>
+  <script src='../public/js/jquery.serializeJSON.js'></script>
+  <script src="../public/js/app.js"></script>
+  <script src="../public/js/serviceAuth.js"></script>
+  <script>
+    (function(){
+      // Toggle Function
+      $('.toggle').click(function(){
+        // Switches the Icon
+        $(this).children('i').toggleClass('fa-pencil');
+        // Switches the forms
+        $('.form').animate({
+          height: "toggle",
+          'padding-top': 'toggle',
+          'padding-bottom': 'toggle',
+          opacity: "toggle"
+        }, "slow");
+      });
+    })();
+
+    (function(serviceAuth) {
+      document.formlogin.onsubmit = function(e) {
+        e.preventDefault();
+        isValid = true;
+        if (isValid) {
+          serviceAuth.login($(this).serializeJSON())
+            .done(function(data) {
+              console.log(data);
+              localStorage.setItem('agendaToken', data.token);
+              alert(data.message);
+              location.replace("./agendas.html");
+            }).fail(function(error) {
+              console.error(error.responseJSON);
+              alert(error.responseJSON.errors.form)
+            });
+        }
+      }
+      document.formsignup.onsubmit = function(e) {
+        e.preventDefault();
+        const {
+          password,
+          confirmPassword
+        } = $(this).serializeJSON();
+        if (typeof password !== "undefined" && password === confirmPassword) {
+          serviceAuth.register($(this).serializeJSON())
+            .done(function(data) {
+              console.log(data);
+              alert(data.message);
+              $('.toggle').children('i').toggleClass('fa-pencil');
+              $('.form').animate({
+                height: "toggle",
+                'padding-top': 'toggle',
+                'padding-bottom': 'toggle',
+                opacity: "toggle"
+              }, "slow");
+            }).fail(function(error) {
+              console.error(error.responseJSON);
+            });
+        }else{
+          console.error("password incorrect");
+        }
+      }
+
+
+    })(app.serviceAuth)
+  </script>
+</body>
+
+</html>

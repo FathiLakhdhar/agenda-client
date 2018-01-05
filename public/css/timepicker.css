@@ -1,0 +1,129 @@
+/************************/
+
+/* =     Color          */
+
+/************************/
+
+/************************
+
+grey : #A8A8A8; #bdbdbd;
+blue : #00A2FF;
+
+
+*************************/
+
+.fl-timepicker {
+  position: relative;
+  display: table;
+  margin: 5px;
+  padding: 30px;
+  font-family: sans-serif;
+  border-bottom: 1px dashed #bdbdbd;
+  border-top: 1px dashed #bdbdbd;
+}
+
+.fl-timepicker::after {
+  content: attr(data-week);
+  position: absolute;
+  padding: 0px 10px;
+  bottom: -7px;
+  left: 43%;
+  background-color: white;
+  color: #bdbdbd;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.fl-timepicker::before {
+  content: attr(data-year);
+  position: absolute;
+  padding: 0px 10px;
+  top: -8px;
+  left: 45%;
+  background-color: white;
+  color: #bdbdbd;
+  font-size: 12px;
+}
+
+.fl-timepicker>span {
+  position: absolute;
+  top: 37%;
+  font-size: 40px;
+  color: #00a2ff;
+  cursor: pointer;
+}
+
+.fl-timepicker>span.disabled {
+  cursor: not-allowed;
+  color: #A8A8A8;
+}
+
+.fl-timepicker>span:nth-of-type(1) {
+  left: 0;
+}
+
+.fl-timepicker>span:nth-of-type(2) {
+  right: 0;
+}
+
+.fl-time {
+  position: relative;
+  display: table-cell;
+  min-width: 100px;
+  min-height: 100px;
+  width: 100px;
+  height: 100px;
+  margin-right: 5px;
+  border: 4px solid #00A2FF;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.fl-time:hover {
+    box-shadow: 0px 0px 2px #000;
+}
+.fl-time:hover::after {
+  content: attr(data-time);
+  position: absolute;
+  width: 100px;
+  bottom: -20px;
+  right: 0;
+  background: #eee;
+  white-space: nowrap;
+  font-size: 10px;
+  color: #a8a8a8;
+  border-radius: 5px;
+}
+
+.fl-time.today::before {
+  content: "– Today –";
+  position: absolute;
+  top: -25px;
+  left: 22px;
+  color: #A8A8A8;
+  font-size: 12px;
+}
+
+.fl-time.disabled {
+  border: 4px solid #A8A8A8;
+  cursor: not-allowed;
+}
+
+.fl-time>span {
+  display: block;
+  text-transform: uppercase;
+}
+
+.fl-time>span:nth-of-type(2) {
+  color: #A8A8A8;
+}
+
+.fl-time>span:nth-of-type(1) {
+  font-weight: bolder;
+}
+
+.margin-right {
+  margin-right: 10px;
+}

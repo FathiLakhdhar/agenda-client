@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Create new agenda</title>
+  <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../public/css/ionicons.min.css">
+  <style media="screen">
+    .h1,
+    h1 {
+      font-size: 20px;
+    }
+
+    .days-week {
+      list-style: none;
+      margin: 10px auto;
+      padding: 0;
+    }
+
+    .days-week>li {
+      display: inline-block;
+    }
+
+    .days-week>li>a {
+      padding: 5px 10px;
+      background-color: #eee;
+      color: black;
+      text-decoration: none;
+    }
+
+    .days-week>li>a.active,
+    .days-week>li>a:hover {
+      color: rgb(0, 81, 231);
+    }
+
+    .tabs>.tabs-item {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Create new agenda<h1>
+        <form class="form" name="form" method="POST" action="">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="active" checked> Active
+            </label>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="name" placeholder="name">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="start" placeholder="start date (YYYY-MM-DD)">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="end" placeholder="end date (YYYY-MM-DD)">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="duration" placeholder="duration (hh:mm)">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="startEvery" placeholder="start every (hh:mm)">
+          </div>
+
+
+          <!-- availability -->
+          <section>
+              <ul id="days" class="days-week" data-tabs="tabs-days">
+                  <li><a href="#Sunday">Sunday</a></li>
+                  <li><a href="#Monday">Monday</a></li>
+                  <li><a href="#Tuesday">Tuesday</a></li>
+                  <li><a href="#Wednesday">Wednesday</a></li>
+                  <li><a href="#Thursday">Thursday</a></li>
+                  <li><a href="#Friday">Friday</a></li>
+                  <li><a href="#Saturday">Saturday</a></li>
+              </ul>
+
+              <div id="tabs-days" class="tabs"><!-- tabs -->
+
+                  <div id="Sunday" class="tabs-item"><!-- tabs-item -->
+                      Sunday
+                      <label>
+                          <input type="checkbox" name="av_0_active" id="" checked />
+                      </label>
+                      <div><!-- interval -->
+                          <label>from
+                              <input type="text" name="av_0_i0_from" id="" placeholder="hh:mm am">
+                          </label>
+                          <label>to
+                              <input type="text" name="av_0_i0_to" id="" placeholder="hh:mm am">
+                          </label>
+                      </div><!-- end interval -->
+                      <div><!-- interval -->
+                          <label>from
+                              <input type="text" name="av_0_i1_from" id="" placeholder="hh:mm am">
+                          </label>
+                          <label>to
+                              <input type="text" name="av_0_i1_to" id="" placeholder="hh:mm am">
+                          </label>
+                      </div><!-- end interval -->
+                  </div><!-- end tabs-item -->
+
+                  <div id="Monday" class="tabs-item"><!-- tabs-item -->
+                      Monday
+                      <label>
+                          <input type="checkbox" name="av_1_active" id="" checked />
+                      </label>
+                      <div><!-- interval -->
+                          <label>from
+                              <input type="text" name="av_1_i0_from" id="" placeholder="hh:mm am">
+                          </label>
+                          <label>to
+                              <input type="text" name="av_1_i0_to" id="" placeholder="hh:mm am">
+                          </label>
+                      </div><!-- end interval -->
+                      <div><!-- interval -->
+                          <label>from
+                              <input type="text" name="av_1_i1_from" id="" placeholder="hh:mm am">
+                          </label>
+                          <label>to
+                              <input type="text" name="av_1_i1_to" id="" placeholder="hh:mm am">
+                          </label>
+                      </div><!-- end interval -->
+                  </div><!-- end tabs-item -->
+
+
+                  <div id="Tuesday" class="tabs-item"><!-- tabs-item -->
+                      Tuesday
+                      <label>
+                          <input type="checkbox" name="av_2_active" id="" checked />
+                      </label>
+                      <div><!-- interval -->
+                          <label>from
+                              <input type="text" name="av_2_i0_from" id="" placeholder="hh:mm am">
+                          </label>
+                          <label>to
+                              <input type="text" name="av_2_i0_to" id="" placeholder="hh:mm am">
+                          </label>
+                      </div><!-- end interval -->
+                      <div><!-- interval -->
+                          <label>from
+                              <input type="text" name="av_2_i1_from" id="" placeholder="hh:mm am">
+                          </label>
+                          <label>to
+                              <input type="text" name="av_2_i1_to" id="" placeholder="hh:mm am">
+                          </label>
+                      </div><!-- end interval -->
+                  </div><!-- end tabs-item -->
+
+
+                  <div id="Wednesday" class="tabs-item"><!-- tabs-item -->
+                      Wednesday
+                      <label>
+                          <input type="checkbox" name="av_3_active" id="" checked />
+                      </label>
+                      <div><!-- interval -->
+                          <label>from
+                              <input type="text" name="av_3_i0_from" id="" placeholder="hh:mm am">
+                          </label>
+                          <label>to
+                              <input type="text" name="av_3_i0_to" id="" placeholder="hh:mm am">
+                          </label>
+                      </div><!-- end interval -->
+                      <div><!-- interval -->
+                          <label>from
+                              <input type="text" name="av_3_i1_from" id="" placeholder="hh:mm am">
+                          </label>
+                          <label>to
+                              <input type="text" name="av_3_i1_to" id="" placeholder="hh:mm am">
+                          </label>
+                      </div><!-- end interval -->
+                  </div><!-- end tabs-item -->
+
+                  <div id="Thursday" class="tabs-item"><!-- tabs-item -->
+                      Thursday
+                      <label>
+                          <input type="checkbox" name="av_4_active" id="" checked />
+                      </label>
+                      <div><!-- interval -->
+                          <label>from
+                              <input type="text" name="av_4_i0_from" id="" placeholder="hh:mm am">
+                          </label>
+                          <label>to
+                              <input type="text" name="av_4_i0_to" id="" placeholder="hh:mm am">
+                          </label>
+                      </div><!-- end interval -->
+                      <div><!-- interval -->
+                          <label>from
+                              <input type="text" name="av_4_i1_from" id="" placeholder="hh:mm am">
+                          </label>
+                          <label>to
+                              <input type="text" name="av_4_i1_to" id="" placeholder="hh:mm am">
+                          </label>
+                      </div><!-- end interval -->
+                  </div><!-- end tabs-item -->
+
+                  <div id="Friday" class="tabs-item"><!-- tabs-item -->
+                      Friday
+                      <label>
+                          <input type="checkbox" name="av_5_active" id="" checked />
+                      </label>
+                      <div><!-- interval -->
+                          <label>from
+                              <input type="text" name="av_5_i0_from" id="" placeholder="hh:mm am">
+                          </label>
+                          <label>to
+                              <input type="text" name="av_5_i0_to" id="" placeholder="hh:mm am">
+                          </label>
+                      </div><!-- end interval -->
+                      <div><!-- interval -->
+                          <label>from
+                              <input type="text" name="av_5_i1_from" id="" placeholder="hh:mm am">
+                          </label>
+                          <label>to
+                              <input type="text" name="av_5_i1_to" id="" placeholder="hh:mm am">
+                          </label>
+                      </div><!-- end interval -->
+                  </div><!-- end tabs-item -->
+
+                  <div id="Saturday" class="tabs-item"><!-- tabs-item -->
+                      Saturday
+                      <label>
+                          <input type="checkbox" name="av_6_active" id="" checked />
+                      </label>
+                      <div><!-- interval -->
+                          <label>from
+                              <input type="text" name="av_6_i0_from" id="" placeholder="hh:mm am">
+                          </label>
+                          <label>to
+                              <input type="text" name="av_6_i0_to" id="" placeholder="hh:mm am">
+                          </label>
+                      </div><!-- end interval -->
+                      <div><!-- interval -->
+                          <label>from
+                              <input type="text" name="av_6_i1_from" id="" placeholder="hh:mm am">
+                          </label>
+                          <label>to
+                              <input type="text" name="av_6_i1_to" id="" placeholder="hh:mm am">
+                          </label>
+                      </div><!-- end interval -->
+                  </div><!-- end tabs-item -->
+
+              </div><!-- end tabs -->
+
+          </section><!-- end availability -->
+
+
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+
+
+    <script src="../public/js/jquery-2.1.1.min.js"></script>
+  <script src='../public/js/jquery.serializeJSON.js'></script>
+    <script src="../public/js/bootstrap.min.js"></script>
+    <script src='../public/js/app.js'></script>
+    <script type="text/javascript">
+      (function TabsAvailability(){
+        elem = document.getElementById('days');
+        elem.onclick = function(e){
+            e.preventDefault();
+            if(e.target.nodeName == "A"){
+
+                [].forEach.call(this.children,  function(li){
+                    li.firstChild.classList.remove('active');
+                });
+                e.target.classList.add('active');
+
+                var tabsId = this.attributes['data-tabs'].value;
+                var tabsElem = document.getElementById(tabsId);
+                if(tabsElem){
+                    var items= tabsElem.querySelectorAll('.tabs-item');
+                    [].forEach.call(items, function(item){
+                        item.style.display= 'none';
+                    })
+                    var selector = e.target.hash;
+                    var item = tabsElem.querySelector(selector);
+                    if(item) item.style.display = "block";
+                }
+
+            }
+
+        }
+      })()
+
+      document.form.onsubmit= function(e){
+        e.preventDefault();
+        var formjson = $(this).serializeJSON();
+        if(formjson.active && formjson.active==="on")formjson.active = true;
+        else formjson.active = false;
+        formjson.availability= {};
+        for(var i=0;i<=6;i++){
+          console.log(formjson[`av_${i}_active`]);
+          if(formjson[`av_${i}_active`] === "on"){
+
+            formjson.availability[""+i]={};
+            formjson.availability[""+i]["active"]=true;
+            formjson.availability[""+i]["intervals"]=[];
+            formjson.availability[""+i]["intervals"].push({
+              from: formjson[`av_${i}_i0_from`],
+              to: formjson[`av_${i}_i0_to`],
+            });
+
+            formjson.availability[""+i]["intervals"].push({
+              from: formjson[`av_${i}_i1_from`],
+              to: formjson[`av_${i}_i1_to`],
+            })
+
+          }
+
+          delete formjson[`av_${i}_i0_from`];
+          delete formjson[`av_${i}_i0_to`];
+          delete formjson[`av_${i}_active`];
+          delete formjson[`av_${i}_i1_from`];
+          delete formjson[`av_${i}_i1_to`];
+
+        }//end for
+
+        console.log(formjson);
+
+        var token = localStorage.getItem('agendaToken') ? 'Bearer '+localStorage.getItem('agendaToken') : '';
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": `${app.config.api}api/agendas`,
+          "method": "POST",
+          "headers": {
+            "authorization": token
+          },
+          "data": formjson
+        };
+
+        $.ajax(settings).done(function (response) {
+          console.log(response);
+          alert(response.message);
+        }).fail(function(error){
+          console.error(error.responseJSON);
+          alert('errors');
+        });
+      }// end fn listener submit
+    </script>
+  </body>
+</html>
