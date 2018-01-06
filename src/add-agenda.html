@@ -293,34 +293,43 @@
         if(formjson.active && formjson.active==="on")formjson.active = true;
         else formjson.active = false;
         formjson.availability= {};
+
         for(var i=0;i<=6;i++){
-          console.log(formjson[`av_${i}_active`]);
+          obj={
+            active: false,
+            intervals: []
+          };
           if(formjson[`av_${i}_active`] === "on"){
+            //console.log(`av_${i}_active :`,formjson[`av_${i}_active`]);
 
-            formjson.availability[""+i]={};
-            formjson.availability[""+i]["active"]=true;
-            formjson.availability[""+i]["intervals"]=[];
-            formjson.availability[""+i]["intervals"].push({
-              from: formjson[`av_${i}_i0_from`],
-              to: formjson[`av_${i}_i0_to`],
-            });
-
-            formjson.availability[""+i]["intervals"].push({
-              from: formjson[`av_${i}_i1_from`],
-              to: formjson[`av_${i}_i1_to`],
-            })
-
+            obj={
+                active: true,
+                intervals: [
+                    {
+                        from: formjson[`av_${i}_i0_from`],
+                        to: formjson[`av_${i}_i0_to`],
+                    },
+                    {
+                        from: formjson[`av_${i}_i1_from`],
+                        to: formjson[`av_${i}_i1_to`],
+                    }
+                ]
+            }
+            console.log()
           }
 
+          formjson.availability[i]= obj;
+
+
+          delete formjson[`av_${i}_active`];
           delete formjson[`av_${i}_i0_from`];
           delete formjson[`av_${i}_i0_to`];
-          delete formjson[`av_${i}_active`];
           delete formjson[`av_${i}_i1_from`];
           delete formjson[`av_${i}_i1_to`];
 
         }//end for
 
-        console.log(formjson);
+        console.log(JSON.stringify(formjson));
 
         var token = localStorage.getItem('agendaToken') ? 'Bearer '+localStorage.getItem('agendaToken') : '';
         var settings = {
@@ -329,17 +338,21 @@
           "url": `${app.config.api}api/agendas`,
           "method": "POST",
           "headers": {
+            "content-type": "application/json",
             "authorization": token
           },
-          "data": formjson
+          "data": JSON.stringify(formjson)
         };
 
         $.ajax(settings).done(function (response) {
           console.log(response);
-          alert(response.message);
+          var r = confirm(response.message+' redirect to list Agendas ?');
+          if (r == true) {
+              location.replace('./agendas.html');
+          }
         }).fail(function(error){
           console.error(error.responseJSON);
-          alert('errors');
+          alert(error.responseJSON.message);
         });
       }// end fn listener submit
     </script>
