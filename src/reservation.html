@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Appointment</title>
+  <title>Reservation</title>
   <link rel="stylesheet" href="../public/css/bootstrap.min.css">
   <link rel="stylesheet" href="../public/css/ionicons.min.css">
   <link rel="stylesheet" href="../public/css/calendly.css">
@@ -19,7 +19,7 @@
       text-transform: uppercase;
     }
 
-    #timepicker {
+    #timepickers>div {
       display: inline-block;
       margin-left: auto;
       margin-right: auto;
@@ -39,9 +39,10 @@
   <h2 class="uppercase">Select a Day</h2>
 
   <div id="agenda"></div>
-  <div id="ag" style="display:none;">
+  <div id="timepickers" style="display:none;">
     <h2 class="uppercase">Select a time</h2>
-    <div id="timepicker"></div>
+    <div id="timepicker0"></div>
+    <div id="timepicker1"></div>
   </div>
 
 

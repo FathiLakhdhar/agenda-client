@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("#ag").hide();
+    $("#timepickers0").hide();
 
     $('#contactInput')
         .on('invalid', function () {
@@ -37,34 +37,61 @@ $(document).ready(function () {
                         } = data;
 
 
+                        var weekHolidays= [];
+
+                        for (var i = 0; i <= 6 ; i++)
+                          if(!(availability[i].active))
+                            weekHolidays.push(i)
+
 
                         // Agenda plugin
 
                         calendly = new Calendly('agenda', {
                             startDate: new Date(start),
-                            endDate: new Date(end)
+                            endDate: new Date(end),
+                            weekHolidays: weekHolidays
                         });
 
                         calendly.addEventListener('flClickDate', function (e) {
                             if (e.date) {
                                 dateCal = e.date.toJSON().split('T')[0];
-                                $("#ag").show();
+                                $("#timepickers").show();
+                                timepicker0.set({
+                                    start: availability[e.date.getDay()].intervals[0].from,
+                                    end: availability[e.date.getDay()].intervals[0].to,
+                                })
+                                timepicker1.set({
+                                  start: availability[e.date.getDay()].intervals[1].from,
+                                  end: availability[e.date.getDay()].intervals[1].to,
+                                })
                             }
                         }, false);
 
+
                         // timepicker plugin
 
-                        var timepicker = new Timepicker('timepicker', {
-                            start: "08:00 am",
-                            end: "05:00 pm",
+                        var timepicker0 = new Timepicker('timepicker0', {
                             duration: duration,
                             startEvery: startEvery
                         });
 
-                        timepicker.addEventListener('clickTime', function (e) {
+                        timepicker0.addEventListener('clickTime', function (e) {
                             timeCal = e.time;
                             $("#appointment").modal();
                         }, true)
+
+
+                        var timepicker1 = new Timepicker('timepicker1', {
+                            duration: duration,
+                            startEvery: startEvery
+                        });
+
+                        timepicker1.addEventListener('clickTime', function (e) {
+                            timeCal = e.time;
+                            $("#appointment").modal();
+                        }, true)
+
+
                     }
                 })
                 .fail(function (error) {

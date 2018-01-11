@@ -29,10 +29,20 @@
     var elem = document.getElementById(idElem);
     if (!elem) return;
 
-    var start = "00:00 am";
-    var end = "12:00 pm";
-    var duration = "00:15";
-    var startEvery = "00:00";
+
+    var Options = {
+        start: "00:00 am",
+        end: "12:00 pm",
+        duration: "00:30",
+        startEvery: "00:05"
+    }
+
+    this.set = function(opts){
+
+      Object.assign(Options, opts);
+      console.log(Options)
+      renderDOM();
+    }
 
 
     var timepickerDOM = document.createElement('div');
@@ -81,21 +91,23 @@
 
     function renderDOM() {
 
-      var s = regExTime(start);
+      timesDOM.innerHTML = "";
+
+      var s = regExTime(Options.start);
       var sh = parseInt(s[1]);
       var sm = parseInt(s[2]);
       var smode = s[3].toLowerCase();
 
-      var e = regExTime(end);
+      var e = regExTime(Options.end);
       var eh = parseInt(e[1]);
       var em = parseInt(e[2]);
       var emode = e[3].toLowerCase();
 
-      var se = regExTime(startEvery);
+      var se = regExTime(Options.startEvery);
       var seh = parseInt(se[1]);
       var sem = parseInt(se[2]);
 
-      var d = regExTime(duration);
+      var d = regExTime(Options.duration);
       var dh = parseInt(d[1]);
       var dm = parseInt(d[2]);
 
@@ -169,18 +181,8 @@
 
     (function init() {
 
-      var Options = {
-        start: "00:00 am",
-        end: "12:00 pm",
-        duration: "00:30",
-        startEvery: "00:05"
-      }
-      Object.assign(Options, (typeof options === "object") ? options : {});
 
-      start = Options.start;
-      end = Options.end;
-      duration = Options.duration;
-      startEvery = Options.startEvery;
+      Object.assign(Options, (typeof options === "object") ? options : {});
 
       renderDOM();
 
