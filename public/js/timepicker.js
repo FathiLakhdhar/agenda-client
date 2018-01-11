@@ -58,20 +58,15 @@
     };
 
     (function() {
-      var count = 1;
       spanNext.onclick = function() {
-        scrollDOM.scrollTo(count * 770, 0);
+        scrollDOM.scrollBy(770, 0);
         spanPrev.classList.remove('disabled');
-        count++;
       }
       spanPrev.onclick = function() {
-        scrollDOM.scrollTo(count * 770, 0);
-        if (count > 0) {
-          spanPrev.classList.remove('disabled');
-          count--;
-        } else if (count == 0) {
-          spanPrev.classList.add('disabled');
-        }
+        scrollDOM.scrollBy(-770, 0);
+
+        spanPrev.classList.remove('disabled');
+
       }
     })();
 
